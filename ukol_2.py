@@ -1,1 +1,1 @@
-print("ahoj zkouška opět")
+print("ahoj zkouška opět tady zase")
