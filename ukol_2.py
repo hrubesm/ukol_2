@@ -12,8 +12,8 @@ with open ('vstup.csv', encoding="utf-8") as csvfile,\
     prutok = 0
     for row in reader:
         try:
-            datum = str(row[0]+","+row[1]+","+row[2]+","+row[3]+","+row[4])
             week = row
+            datum = (row[0]+","+row[1]+","+row[2]+","+row[3]+","+row[4])            
             prutok = float(row[5])
             sedmdeni = sedmdeni + prutok
             if (datumcitac % 7) == 0:
@@ -21,10 +21,10 @@ with open ('vstup.csv', encoding="utf-8") as csvfile,\
             if (prutokcitac % 7) == 0:
                 sedmdenistr = str(f"{(sedmdeni/7):.4f}")
                 sedmdeni = 0
-                week[0] = (datum7+sedmdenistr)
+                week = (datum7, sedmdenistr)
                 writer_dny.writerow(week)
                 
-                #print(datum7+","+sedmdenistr)
+                #print(datum7,sedmdenistr)
 
         except ValueError:
             prutok = 0    
@@ -34,8 +34,8 @@ with open ('vstup.csv', encoding="utf-8") as csvfile,\
 
     
     posledni = str(sedmdeni/(datumcitac%7))
-    week[0] = (datum7+","+posledni)
+    week = (datum7, posledni)
     writer_dny.writerow(week)
-    #print(datum7+","+posledni)
+    #print(datum7, posledni)
 
     #f"{vysledek1:.4f}" - desetinná místa
